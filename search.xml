@@ -4,13 +4,27 @@
   
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2022/04/17/hello-world/"/>
-      <url>/2022/04/17/hello-world/</url>
+      <title>我的游戏开发日志（一）初探Godot引擎</title>
+      <link href="/2022/04/25/%E6%88%91%E7%9A%84%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E6%97%85%E4%B8%80-%E5%88%9D%E6%8E%A2Godot%E5%BC%95%E6%93%8E/"/>
+      <url>/2022/04/25/%E6%88%91%E7%9A%84%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E6%97%85%E4%B8%80-%E5%88%9D%E6%8E%A2Godot%E5%BC%95%E6%93%8E/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不得不说加班真的是消磨人的热情和经历，还好已经到了加班的尾声，累。最近开始思考，什么才是我想做的事情？回到了最初的起点，想到一开始想学编程就是为了做一款自己的游戏，而我也自认为自己是一个喜欢创造的人，我知道做事不能仅凭一腔热血，但至少有热血的时候去尝试一下。</p><h2 id="为什么是-Godot-？"><a href="#为什么是-Godot-？" class="headerlink" title="为什么是 Godot ？"></a>为什么是 Godot ？</h2><h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ul><li>简单、易上手</li><li>2D 功能支持的不错，虽然说 3D 支持不太行，但对我来说做个小型游戏足够了，杀鸡焉用牛刀。</li><li>跨平台，基本上主流的平台都是支持，Windows、Linux、Android 等等</li><li>完全免费又是开源的</li></ul><h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><ul><li>使用的人少，遇到问题可能不好解决</li><li>插件也少</li></ul><h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>一是简单易上手对我来说是一个很重要的点，毕竟白天得上班，晚上说不好得加班，减少学习成本还是很必要的。</p><p>二是也不知道自己会坚持多久，先用着，不行后面在更换。</p><h2 id="Godot-的一些入门知识"><a href="#Godot-的一些入门知识" class="headerlink" title="Godot 的一些入门知识"></a>Godot 的一些入门知识</h2><p>上个周六，花了一天的时间跟着它的文档做了一个 2D 的小游戏，所以我把做 2D 小游戏教程中的一些必须知道的基本知识做个总结。</p><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p><strong>Godot 引擎是将一个个场景进行组合，最后形成游戏的。</strong>例如：主角、怪物、宝物、NPC、武器、菜单栏、对话框等等这些都可以是场景。</p><ul><li>玩家-场景</li></ul><p><img src="https://pic.imgdb.cn/item/6267f2ae239250f7c5a2192e.jpg"></p><ul><li><p>怪物-场景</p><p><img src="https://pic.imgdb.cn/item/6267f305239250f7c5a2da4a.jpg"></p></li><li><p>积分栏-场景</p><p><img src="https://pic.imgdb.cn/item/6267f385239250f7c5a423be.jpg"></p></li></ul><p><strong>简单来说游戏中的一切你都可以看做是一个场景。</strong></p><h3 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h3><p><strong>节点是组成场景的构件，不同作用的节点组合场景就有了各种特性。</strong></p><p>例如：玩家场景，由 AnimatedSprite 节点和 CollisionShape2D 节点组合而成。玩家场景就具备了动画和碰撞形状两个特性，这意味着玩家角色可以动了，然后被别的场景碰撞时也能知晓。</p><p><img src="https://pic.imgdb.cn/item/6267f2ae239250f7c5a2192e.jpg"></p><h3 id="场景树"><a href="#场景树" class="headerlink" title="场景树"></a>场景树</h3><p><strong>场景树由场景或者节点组合而成，就是一颗树的形状。</strong></p><p>例如：游戏的主场景，由玩家场景（Player）、怪物场景（enemy）、积分栏场景（HUD）其他的一些的辅助节点组合而成，运行游戏其实就是执行主场景。</p><p><img src="https://pic.imgdb.cn/item/6267f540239250f7c5a861b3.jpg"></p><h3 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h3><p><strong>信号就是发生某些事情需要去发出通知</strong>，就好像电影里的经典台词，“一支穿云箭，千军万马来相见”，大家看到这个信号了就会来支援。</p><ul><li>类似的游戏里玩家收到了攻击，发出攻击信号，血条栏收到这个信号，就会去将重新绘制血条；</li><li>鼠标点击宝物相应的也会发出信号，宝物接收到了这个信号就会消失在场景里并发出被拾取的信号，而背包接收到了宝物被拾取信号，就会把宝物在背包中绘制出来。</li></ul><h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><p><strong>脚本就是游戏开发里代码部分了，脚本是服务于节点，赋于节点行为特性。</strong>就像信号部分说的那样，节点介绍到了信号就会做出反馈，而这个反馈动作就是脚本实现的。在脚本中编写相应的代码来实现相应的反馈动作，例如宝物被拾取时，脚本就会执行相应的代码将宝物隐藏起来，效果就像是消失在场景中了。</p><p>Godot 支持的引擎类型有五种，分别是：GDScript、C#、VisualScript 以及通过 GDNative 技术提供的 C++ 和 C。文档里新手推荐使用 GDScript。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上说的入门知识是我认为 Godot 引擎开发游戏最为基础的部分，当然还有其他部分需要你去实际操作了，像是如何创建一个节点、如何编写第一个脚本、如何进行信号连接等等，这些的知识你可以参考 Godot 的开发文档继续学习。</p><h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><p><img src="https://pic.imgdb.cn/item/6267ffc9239250f7c5c57aeb.gif"></p><p>Godot 官网：<a href="https://godotengine.org/">https://godotengine.org/</a></p><p>Godot 文档：<a href="https://docs.godotengine.org/zh_CN/latest/">https://docs.godotengine.org/zh_CN/latest/</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> 游戏开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Godot引擎 </tag>
+            
+            <tag> 游戏开发 </tag>
+            
+        </tags>
       
     </entry>
     
